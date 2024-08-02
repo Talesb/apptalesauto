@@ -1,0 +1,5 @@
+Honda;CG 160;2021;12000.00;true
+Yamaha;Fazer 250;2020;15000.00;false
+Suzuki;Yes 125;2019;8000.00;true
+Kawasaki;Ninja 300;2022;23000.00;true
+BMW;G 310 R;2021;24000.00;false

@@ -1,0 +1,5 @@
+João Silva;30;3000.00
+Maria Souza;28;3200.00
+Carlos Oliveira;35;3500.00
+Ana Pereira;26;2800.00
+Pedro Santos;40;4000.00

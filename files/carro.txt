@@ -1,0 +1,5 @@
+Toyota;Corolla;2020;80000.00;true
+Honda;Civic;2019;75000.00;false
+Ford;Fusion;2018;90000.00;true
+Chevrolet;Onix;2021;60000.00;false
+Fiat;Argo;2022;65000.00;true
