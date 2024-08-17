@@ -18,8 +18,8 @@ public class MotoService {
     private ConcessionariaRepository concessionariaRepository;
 
     public void incluir(MotoDTO motoDTO) {
-        Concessionaria concessionaria = concessionariaRepository.findById(motoDTO.idConcessionaria()).orElse(null);
-        Moto moto = new Moto(motoDTO.marca(), motoDTO.modelo(), motoDTO.ano(), motoDTO.preco(), motoDTO.temPartidaEletrica(), concessionaria);
+        Concessionaria concessionaria = concessionariaRepository.findById(motoDTO.getIdConcessionaria()).orElse(null);
+        Moto moto = new Moto(motoDTO.getMarca(), motoDTO.getModelo(), motoDTO.getAno(), motoDTO.getPreco(), motoDTO.isTemPartidaEletrica(), concessionaria);
         motoRepository.save(moto);
     }
 

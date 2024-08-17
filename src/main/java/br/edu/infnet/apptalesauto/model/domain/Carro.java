@@ -1,7 +1,7 @@
 package br.edu.infnet.apptalesauto.model.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "TCarro")
@@ -30,6 +30,6 @@ public class Carro extends Veiculo {
 
     @Override
     public String toString() {
-        return super.toString() + " Carro [temArCondicionado=" + temArCondicionado + "]";
+        return super.toString() + "temArCondicionado=" + temArCondicionado ;
     }
 }

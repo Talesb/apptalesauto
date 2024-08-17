@@ -32,15 +32,15 @@ public class VendaService {
 
     public void incluir(VendaDTO vendaDTO) {
 
-        Vendedor vendedor = vendedorRepository.findById(vendaDTO.vendedorId()).orElseThrow( () -> new RuntimeException("Vendedor não encontrado"));
+        Vendedor vendedor = vendedorRepository.findById(vendaDTO.getVendedorId()).orElseThrow( () -> new RuntimeException("Vendedor não encontrado"));
 
-        Optional<Moto> moto = motoRepository.findById(vendaDTO.veiculoId());
-        Optional<Carro> carro = carroRepository.findById(vendaDTO.veiculoId());
+        Optional<Moto> moto = motoRepository.findById(vendaDTO.getVeiculoId());
+        Optional<Carro> carro = carroRepository.findById(vendaDTO.getVeiculoId());
 
         if (moto.isPresent()) {
-            vendaRepository.save(new Venda(vendedor, moto.get(), LocalDate.now(), vendaDTO.valor()));
+            vendaRepository.save(new Venda(vendedor, moto.get(), LocalDate.now(), vendaDTO.getValor()));
         } else if (carro.isPresent()) {
-            vendaRepository.save(new Venda(vendedor,  carro.get(), LocalDate.now(), vendaDTO.valor()));
+            vendaRepository.save(new Venda(vendedor,  carro.get(), LocalDate.now(), vendaDTO.getValor()));
         }
 
     }

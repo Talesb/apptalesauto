@@ -1,6 +1,9 @@
 package br.edu.infnet.apptalesauto.model.domain;
 
-import jakarta.persistence.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import javax.persistence.*;
 
 import java.util.List;
 
@@ -18,7 +21,7 @@ public class Vendedor {
 
     private double salario;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idVendedor")
     private List<Venda> vendas;
 

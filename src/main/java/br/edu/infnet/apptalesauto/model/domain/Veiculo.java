@@ -1,6 +1,6 @@
 package br.edu.infnet.apptalesauto.model.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TVeiculo")

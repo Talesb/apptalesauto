@@ -18,8 +18,8 @@ public class CarroService {
     private ConcessionariaRepository concessionariaRepository;
 
     public void incluir(CarroDTO carroDTO) {
-        Concessionaria concessionaria = concessionariaRepository.findById(carroDTO.idConcessionaria()).orElse(null);
-        Carro carro = new Carro(carroDTO.marca(),carroDTO.modelo(),carroDTO.ano(),carroDTO.preco(),carroDTO.temArCondicionado(),concessionaria);
+        Concessionaria concessionaria = concessionariaRepository.findById(carroDTO.getIdConcessionaria()).orElse(null);
+        Carro carro = new Carro(carroDTO.getMarca(),carroDTO.getModelo(),carroDTO.getAno(),carroDTO.getPreco(),carroDTO.isTemArCondicionado(),concessionaria);
         carroRepository.save(carro);
     }
 

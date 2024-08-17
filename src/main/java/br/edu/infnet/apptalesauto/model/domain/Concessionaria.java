@@ -1,16 +1,18 @@
 package br.edu.infnet.apptalesauto.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +27,14 @@ public class Concessionaria {
     private String endereco;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idConcessionaria")
     private List<Veiculo> veiculos = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idConcessionaria")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Vendedor> vendedores = new ArrayList<>();
 
     public Concessionaria(String nome, String endereco) {
@@ -92,6 +95,6 @@ public class Concessionaria {
 
     @Override
     public String toString() {
-        return "Concessionaria [nome=" + nome + ", endereco=" + endereco + ", veiculos=" + veiculos + ", vendedores=" + vendedores + "]";
+        return "Concessionaria [nome=" + nome + ", endereco=" + endereco + "]";
     }
 }
