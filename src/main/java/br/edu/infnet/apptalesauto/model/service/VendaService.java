@@ -3,7 +3,7 @@ package br.edu.infnet.apptalesauto.model.service;
 import br.edu.infnet.apptalesauto.model.domain.Carro;
 import br.edu.infnet.apptalesauto.model.domain.Moto;
 import br.edu.infnet.apptalesauto.model.domain.Venda;
-import br.edu.infnet.apptalesauto.model.domain.VendaDTO;
+import br.edu.infnet.apptalesauto.model.domain.dto.VendaDTO;
 import br.edu.infnet.apptalesauto.model.domain.Vendedor;
 import br.edu.infnet.apptalesauto.model.repository.CarroRepository;
 import br.edu.infnet.apptalesauto.model.repository.MotoRepository;
@@ -30,17 +30,17 @@ public class VendaService {
     @Autowired
     private CarroRepository carroRepository;
 
-    public void incluir(VendaDTO venda) {
+    public void incluir(VendaDTO vendaDTO) {
 
-        Vendedor vendedor = vendedorRepository.findById(venda.getVendedorId()).orElseThrow( () -> new RuntimeException("Vendedor não encontrado"));
+        Vendedor vendedor = vendedorRepository.findById(vendaDTO.vendedorId()).orElseThrow( () -> new RuntimeException("Vendedor não encontrado"));
 
-        Optional<Moto> moto = motoRepository.findById(venda.getVeiculoId());
-        Optional<Carro> carro = carroRepository.findById(venda.getVeiculoId());
+        Optional<Moto> moto = motoRepository.findById(vendaDTO.veiculoId());
+        Optional<Carro> carro = carroRepository.findById(vendaDTO.veiculoId());
 
         if (moto.isPresent()) {
-            vendaRepository.save(new Venda(vendedor, moto.get(), LocalDate.now(), venda.getValor()));
+            vendaRepository.save(new Venda(vendedor, moto.get(), LocalDate.now(), vendaDTO.valor()));
         } else if (carro.isPresent()) {
-            vendaRepository.save(new Venda(vendedor, carro.get(), LocalDate.now(), venda.getValor()));
+            vendaRepository.save(new Venda(vendedor,  carro.get(), LocalDate.now(), vendaDTO.valor()));
         }
 
     }

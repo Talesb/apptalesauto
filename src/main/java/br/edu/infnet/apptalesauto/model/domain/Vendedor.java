@@ -33,6 +33,13 @@ public class Vendedor {
         this.salario = salario;
     }
 
+    public Vendedor(String nome, int idade, double salario, Concessionaria concessionaria) {
+        this.nome = nome;
+        this.idade = idade;
+        this.salario = salario;
+        this.concessionaria = concessionaria;
+    }
+
     public Vendedor() {
     }
 

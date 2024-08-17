@@ -2,6 +2,7 @@ package br.edu.infnet.apptalesauto.controller;
 
 import br.edu.infnet.apptalesauto.model.domain.Venda;
 import br.edu.infnet.apptalesauto.model.domain.Vendedor;
+import br.edu.infnet.apptalesauto.model.domain.dto.VendedorDTO;
 import br.edu.infnet.apptalesauto.model.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,7 @@ public class VendedorController {
     }
 
     @PostMapping(value = "vendedor/incluir")
-    public String incluir(@RequestBody Vendedor vendedor) {
+    public String incluir(@RequestBody VendedorDTO vendedor) {
 
         vendedorService.incluir(vendedor);
 

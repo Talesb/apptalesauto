@@ -1,9 +1,7 @@
 package br.edu.infnet.apptalesauto.controller;
 
-import br.edu.infnet.apptalesauto.model.domain.Moto;
 import br.edu.infnet.apptalesauto.model.domain.Venda;
-import br.edu.infnet.apptalesauto.model.domain.VendaDTO;
-import br.edu.infnet.apptalesauto.model.service.MotoService;
+import br.edu.infnet.apptalesauto.model.domain.dto.VendaDTO;
 import br.edu.infnet.apptalesauto.model.service.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

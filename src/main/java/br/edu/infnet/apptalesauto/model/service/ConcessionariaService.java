@@ -1,6 +1,5 @@
 package br.edu.infnet.apptalesauto.model.service;
 
-import br.edu.infnet.apptalesauto.model.domain.Carro;
 import br.edu.infnet.apptalesauto.model.domain.Concessionaria;
 import br.edu.infnet.apptalesauto.model.repository.ConcessionariaRepository;
 import org.springframework.beans.factory.annotation.Autowired;

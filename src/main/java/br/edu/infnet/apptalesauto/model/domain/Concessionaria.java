@@ -1,5 +1,6 @@
 package br.edu.infnet.apptalesauto.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,10 +24,12 @@ public class Concessionaria {
     private String nome;
     private String endereco;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idConcessionaria")
     private List<Veiculo> veiculos = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "idConcessionaria")
     private List<Vendedor> vendedores = new ArrayList<>();

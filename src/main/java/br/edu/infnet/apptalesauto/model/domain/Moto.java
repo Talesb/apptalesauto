@@ -9,12 +9,16 @@ public class Moto extends Veiculo {
 
     private boolean temPartidaEletrica;
 
-    public Moto(String marca, String modelo, int ano, double preco, boolean temPartidaEletrica) {
-        super(marca, modelo, ano, preco);
+    public Moto(String marca, String modelo, int ano, double preco, boolean temPartidaEletrica, Concessionaria concessionaria) {
+        super(marca, modelo, ano, preco, concessionaria);
         this.temPartidaEletrica = temPartidaEletrica;
     }
 
     public Moto() {
+    }
+
+    public Moto(Long id) {
+        super(id);
     }
 
     public boolean isTemPartidaEletrica() {

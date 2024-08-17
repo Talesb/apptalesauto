@@ -23,15 +23,21 @@ public abstract class Veiculo {
     @JoinColumn(name = "idConcessionaria")
     private Concessionaria concessionaria;
 
-    public Veiculo(String marca, String modelo, int ano, double preco) {
+    public Veiculo(String marca, String modelo, int ano, double preco, Concessionaria concessionaria) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.preco = preco;
+        this.concessionaria = concessionaria;
     }
 
     public Veiculo() {
     }
+
+    public Veiculo(Long id) {
+        this.id = id;
+    }
+
 
     public String getMarca() {
         return marca;

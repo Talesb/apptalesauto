@@ -8,12 +8,16 @@ import jakarta.persistence.Table;
 public class Carro extends Veiculo {
     private boolean temArCondicionado;
 
-    public Carro(String marca, String modelo, int ano, double preco, boolean temArCondicionado) {
-        super(marca, modelo, ano, preco);
+    public Carro(String marca, String modelo, int ano, double preco, boolean temArCondicionado, Concessionaria concessionaria) {
+        super(marca, modelo, ano, preco, concessionaria);
         this.temArCondicionado = temArCondicionado;
     }
 
     public Carro() {
+    }
+
+    public Carro(Long id) {
+        super(id);
     }
 
     public boolean isTemArCondicionado() {

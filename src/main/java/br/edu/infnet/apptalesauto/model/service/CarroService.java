@@ -1,7 +1,10 @@
 package br.edu.infnet.apptalesauto.model.service;
 
 import br.edu.infnet.apptalesauto.model.domain.Carro;
+import br.edu.infnet.apptalesauto.model.domain.Concessionaria;
+import br.edu.infnet.apptalesauto.model.domain.dto.CarroDTO;
 import br.edu.infnet.apptalesauto.model.repository.CarroRepository;
+import br.edu.infnet.apptalesauto.model.repository.ConcessionariaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +14,12 @@ public class CarroService {
     @Autowired
     private CarroRepository carroRepository;
 
-    public void incluir(Carro carro) {
+    @Autowired
+    private ConcessionariaRepository concessionariaRepository;
+
+    public void incluir(CarroDTO carroDTO) {
+        Concessionaria concessionaria = concessionariaRepository.findById(carroDTO.idConcessionaria()).orElse(null);
+        Carro carro = new Carro(carroDTO.marca(),carroDTO.modelo(),carroDTO.ano(),carroDTO.preco(),carroDTO.temArCondicionado(),concessionaria);
         carroRepository.save(carro);
     }
 

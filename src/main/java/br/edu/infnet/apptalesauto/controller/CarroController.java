@@ -1,6 +1,7 @@
 package br.edu.infnet.apptalesauto.controller;
 
 import br.edu.infnet.apptalesauto.model.domain.Carro;
+import br.edu.infnet.apptalesauto.model.domain.dto.CarroDTO;
 import br.edu.infnet.apptalesauto.model.service.CarroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,11 +28,11 @@ public class CarroController {
     }
 
     @PostMapping(value = "carro/incluir")
-    public String incluir(@RequestBody Carro alimenticio) {
+    public String incluir(@RequestBody CarroDTO carro) {
 
-        carroService.incluir(alimenticio);
+        carroService.incluir(carro);
 
-        return "A inclusão do " + alimenticio + " foi realizada com sucesso!!!";
+        return "A inclusão do " + carro + " foi realizada com sucesso!!!";
     }
 
     @DeleteMapping(value = "carro/{id}/excluir")
