@@ -1,18 +1,36 @@
 package br.edu.infnet.apptalesauto.model.domain;
 
-public class Veiculo {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "TVeiculo")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Veiculo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     private String marca;
     private String modelo;
     private int ano;
     private double preco;
 
+    @OneToOne(mappedBy = "veiculo")
+    private Venda venda;
+
+    @ManyToOne
+    @JoinColumn(name = "idConcessionaria")
+    private Concessionaria concessionaria;
 
     public Veiculo(String marca, String modelo, int ano, double preco) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.preco = preco;
+    }
+
+    public Veiculo() {
     }
 
     public String getMarca() {
@@ -45,6 +63,22 @@ public class Veiculo {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
     }
 
     @Override

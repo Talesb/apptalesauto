@@ -1,14 +1,39 @@
 package br.edu.infnet.apptalesauto.model.domain;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "TVendedor")
 public class Vendedor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String nome;
+
     private int idade;
+
     private double salario;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "idVendedor")
+    private List<Venda> vendas;
+
+    @ManyToOne
+    @JoinColumn(name = "idConcessionaria")
+    private Concessionaria concessionaria;
+
 
     public Vendedor(String nome, int idade, double salario) {
         this.nome = nome;
         this.idade = idade;
         this.salario = salario;
+    }
+
+    public Vendedor() {
     }
 
     public String getNome() {
@@ -33,6 +58,30 @@ public class Vendedor {
 
     public void setSalario(double salario) {
         this.salario = salario;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Venda> getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
+    }
+
+    public Concessionaria getConcessionaria() {
+        return concessionaria;
+    }
+
+    public void setConcessionaria(Concessionaria concessionaria) {
+        this.concessionaria = concessionaria;
     }
 
     @Override
