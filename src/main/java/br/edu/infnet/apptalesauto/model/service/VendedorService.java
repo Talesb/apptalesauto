@@ -19,9 +19,15 @@ public class VendedorService {
     private ConcessionariaRepository concessionariaRepository;
 
     public void incluir(VendedorDTO vendedorDTO) {
+
         Concessionaria concessionaria = concessionariaRepository.findById(vendedorDTO.getIdConcessionaria()).orElse(null);
-         Vendedor vendedor = new Vendedor(vendedorDTO.getNome(), vendedorDTO.getIdade(), vendedorDTO.getSalario(), concessionaria);
+        Vendedor vendedor = new Vendedor(vendedorDTO.getNome(), vendedorDTO.getIdade(), vendedorDTO.getSalario(), concessionaria);
+
+
+
         vendedorRepository.save(vendedor);
+
+
     }
 
     public Iterable<Vendedor> obterLista() {

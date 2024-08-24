@@ -1,5 +1,6 @@
 package br.edu.infnet.apptalesauto.controller;
 
+import br.edu.infnet.apptalesauto.model.domain.Carro;
 import br.edu.infnet.apptalesauto.model.domain.Moto;
 import br.edu.infnet.apptalesauto.model.domain.dto.MotoDTO;
 import br.edu.infnet.apptalesauto.model.service.MotoService;
@@ -9,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 public class MotoController {
@@ -22,13 +26,14 @@ public class MotoController {
         return motoService.obterLista();
     }
 
+
     @GetMapping(value = "moto/{id}")
     public Moto obterPorId(@PathVariable Long id) {
         return motoService.obterPorId(id);
     }
 
     @PostMapping(value = "moto/incluir")
-    public String incluir(@RequestBody MotoDTO moto) {
+    public String incluir(@Valid @RequestBody MotoDTO moto) {
 
         motoService.incluir(moto);
 

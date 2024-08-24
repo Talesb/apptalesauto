@@ -6,7 +6,10 @@ import br.edu.infnet.apptalesauto.model.domain.dto.CarroDTO;
 import br.edu.infnet.apptalesauto.model.repository.CarroRepository;
 import br.edu.infnet.apptalesauto.model.repository.ConcessionariaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 @Service
 public class CarroService {
@@ -38,4 +41,14 @@ public class CarroService {
     public long obterQuantidade() {
         return carroRepository.count();
     }
+
+    public Iterable<Carro> obterListaOrdenada(String orderBy) {
+        return carroRepository.findAll(Sort.by(Sort.Direction.ASC, orderBy));
+    }
+
+    public Collection<Carro> obterComArcodicionado(boolean cArcondicionado){
+        return carroRepository.findByTemArCondicionado(cArcondicionado);
+    }
+
+
 }

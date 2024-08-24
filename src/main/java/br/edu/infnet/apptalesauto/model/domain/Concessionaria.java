@@ -4,15 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +16,11 @@ public class Concessionaria {
     private long id;
 
     private String nome;
-    private String endereco;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idEndereco", referencedColumnName = "id")
+    private Endereco endereco;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -37,7 +33,7 @@ public class Concessionaria {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Vendedor> vendedores = new ArrayList<>();
 
-    public Concessionaria(String nome, String endereco) {
+    public Concessionaria(String nome, Endereco endereco) {
         this.nome = nome;
         this.endereco = endereco;
     }
@@ -69,11 +65,11 @@ public class Concessionaria {
         this.nome = nome;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 

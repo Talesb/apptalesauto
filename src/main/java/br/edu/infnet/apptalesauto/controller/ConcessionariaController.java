@@ -2,6 +2,7 @@ package br.edu.infnet.apptalesauto.controller;
 
 import br.edu.infnet.apptalesauto.model.domain.Carro;
 import br.edu.infnet.apptalesauto.model.domain.Concessionaria;
+import br.edu.infnet.apptalesauto.model.domain.dto.ConcessionariaDTO;
 import br.edu.infnet.apptalesauto.model.service.CarroService;
 import br.edu.infnet.apptalesauto.model.service.ConcessionariaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class ConcessionariaController {
 
@@ -19,7 +22,7 @@ public class ConcessionariaController {
     private ConcessionariaService concessionariaService;
 
     @GetMapping(value = "concessionaria/listar")
-    public Iterable<Concessionaria> obterLista(){
+    public Iterable<Concessionaria> obterLista() {
         return concessionariaService.obterLista();
     }
 
@@ -29,9 +32,13 @@ public class ConcessionariaController {
     }
 
     @PostMapping(value = "concessionaria/incluir")
-    public String incluir(@RequestBody Concessionaria concessionaria) {
+    public String incluir(@Valid @RequestBody ConcessionariaDTO concessionaria) {
 
-        concessionariaService.incluir(concessionaria);
+        try {
+            concessionariaService.incluir(concessionaria);
+        } catch (Exception e) {
+            return "Erro ao incluir a concessionaria: " + e.getMessage();
+        }
 
         return "A inclusão do " + concessionaria + " foi realizada com sucesso!!!";
     }

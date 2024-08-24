@@ -56,7 +56,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"SantoGal Carros\",\n    \"endereco\": \"Rua dos Combatentes, 32, Benfica\"\n}",
+							"raw": "{\n    \"nome\": \"SantoGal Carros\",\n    \"cep\": \"20010020\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -3,13 +3,17 @@ package br.edu.infnet.apptalesauto.controller;
 import br.edu.infnet.apptalesauto.model.domain.Carro;
 import br.edu.infnet.apptalesauto.model.domain.dto.CarroDTO;
 import br.edu.infnet.apptalesauto.model.service.CarroService;
+import org.hibernate.query.QueryParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 public class CarroController {
@@ -18,7 +22,7 @@ public class CarroController {
     private CarroService carroService;
 
     @GetMapping(value = "carro/listar")
-    public Iterable<Carro> obterLista(){
+    public Iterable<Carro> obterLista() {
         return carroService.obterLista();
     }
 
@@ -28,7 +32,7 @@ public class CarroController {
     }
 
     @PostMapping(value = "carro/incluir")
-    public String incluir(@RequestBody CarroDTO carro) {
+    public String incluir(@Valid @RequestBody CarroDTO carro) {
 
         carroService.incluir(carro);
 

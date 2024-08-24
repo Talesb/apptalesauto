@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 public class VendedorController {
 
@@ -29,7 +31,7 @@ public class VendedorController {
     }
 
     @PostMapping(value = "vendedor/incluir")
-    public String incluir(@RequestBody VendedorDTO vendedor) {
+    public String incluir(@Valid @RequestBody VendedorDTO vendedor) {
 
         vendedorService.incluir(vendedor);
 
